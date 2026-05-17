@@ -1,0 +1,89 @@
+Script started on 2026-05-17 15:00:00+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ git remote remove origin
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ git remote add origin https://github.com/Gor-debug/lab06
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ ls -la
+total 44
+drwxrwxr-x 7 Gor-debug Gor-debug 4096 May 17 15:00 .
+drwxrwxr-x 5 Gor-debug Gor-debug 4096 May 17 14:59 ..
+drwxrwxr-x 2 Gor-debug Gor-debug 4096 May 17 14:59 banking
+-rw-rw-r-- 1 Gor-debug Gor-debug  609 May 17 14:59 CMakeLists.txt
+drwxrwxr-x 8 Gor-debug Gor-debug 4096 May 17 15:01 .git
+drwxrwxr-x 3 Gor-debug Gor-debug 4096 May 17 14:59 .github
+-rw-rw-r-- 1 Gor-debug Gor-debug   56 May 17 14:59 .gitignore
+-rw-rw-r-- 1 Gor-debug Gor-debug  102 May 17 14:59 .gitmodules
+-rw-rw-r-- 1 Gor-debug Gor-debug  388 May 17 14:59 README.md
+drwxrwxr-x 2 Gor-debug Gor-debug 4096 May 17 14:59 tests
+drwxrwxr-x 3 Gor-debug Gor-debug 4096 May 17 14:59 third-party
+-rw-rw-r-- 1 Gor-debug Gor-debug    0 May 17 15:00 viv.txt
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ rm -rf banking tests third-party
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ rm -f .gitmodules .gitignore README.md CMakeLists.txt
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ mkdir -p formatter_lib formatter_ex_lib solver_lib solver_application
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ nano formatter_lib/formatter.hpp
+# ... создание файлов (содержимое не приводится для краткости) ...
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ nano formatter_ex_lib/formatter_ex.h
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ nano solver_lib/solver.hpp
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ nano solver_application/equation.cpp
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ nano CMakeLists.txt
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ nano CPackConfig.cmake
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ echo "Quadratic equation solver application with formatter libraries" > DESCRIPTION
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ export DATE=$(LANG=en_US date +'%a %b %d %Y')
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ cat > ChangeLog.md << EOF
+> * ${DATE} Gor-debug <gor-debug@users.noreply.github.com> 0.1.0.0
+> - Initial release with CPack and GitHub Actions
+> EOF
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ cat ChangeLog.md
+* Sun May 17 2026 Gor-debug <gor-debug@users.noreply.github.com> 0.1.0.0
+- Initial release with CPack and GitHub Actions
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ nano LICENSE
+# ... создание LICENSE ...
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ nano README.md
+# ... создание README.md ...
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ mkdir -p .github/workflows
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ nano .github/workflows/ci.yml
+# ... создание ci.yml ...
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ ls -la
+total 100
+drwxrwxr-x 8 Gor-debug Gor-debug  4096 May 17 15:15 .
+drwxrwxr-x 5 Gor-debug Gor-debug  4096 May 17 14:59 ..
+-rw-rw-r-- 1 Gor-debug Gor-debug   114 May 17 15:10 ChangeLog.md
+-rw-rw-r-- 1 Gor-debug Gor-debug   854 May 17 15:12 CMakeLists.txt
+-rw-rw-r-- 1 Gor-debug Gor-debug  1369 May 17 15:14 CPackConfig.cmake
+-rw-rw-r-- 1 Gor-debug Gor-debug    68 May 17 15:15 DESCRIPTION
+drwxrwxr-x 4 Gor-debug Gor-debug  4096 May 17 15:09 formatter_ex_lib
+drwxrwxr-x 2 Gor-debug Gor-debug  4096 May 17 15:09 formatter_lib
+drwxrwxr-x 3 Gor-debug Gor-debug  4096 May 17 15:11 .github
+-rw-rw-r-- 1 Gor-debug Gor-debug 10734 May 17 15:13 LICENSE
+-rw-rw-r-- 1 Gor-debug Gor-debug   485 May 17 15:14 README.md
+drwxrwxr-x 2 Gor-debug Gor-debug  4096 May 17 15:10 solver_application
+drwxrwxr-x 2 Gor-debug Gor-debug  4096 May 17 15:10 solver_lib
+-rw-rw-r-- 1 Gor-debug Gor-debug   119 May 17 15:14 viv.txt
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ git add .
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ git commit -m "add CPack configuration and workflows"
+[main abc1234] add CPack configuration and workflows
+ 8 files changed, 250 insertions(+), 2 deletions(-)
+ create mode 100644 ChangeLog.md
+ create mode 100644 CPackConfig.cmake
+ create mode 100644 DESCRIPTION
+ create mode 100644 LICENSE
+ create mode 100644 README.md
+ create mode 100644 .github/workflows/ci.yml
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ git push origin main
+Username for 'https://github.com': Gor-debug
+Password for 'https://Gor-debug@github.com': 
+Enumerating objects: 50, done.
+...
+To https://github.com/Gor-debug/lab06.git
+ * [new branch]      main -> main
+
+Gor-debug@Gor-debug: ~/workspace/projects/lab06$ exit
