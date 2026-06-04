@@ -29,7 +29,7 @@
 
 ## Результаты
 - Релиз `v1.0.7` доступен по адресу:  
-  [https://github.com/Gor-debug/lab06/releases/tag/v1.0.5](https://github.com/Gor-debug/lab06/releases/tag/v1.0.7)
+  [https://github.com/Gor-debug/lab06/releases/tag/v1.0.7](https://github.com/Gor-debug/lab06/releases/tag/v1.0.7)
 - К релизу приложены четыре пакета: `.deb`, `.rpm`, `.tar.gz`, `.zip`. Также msi и dmg
 
 ## Вывод
