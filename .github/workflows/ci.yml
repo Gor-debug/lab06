@@ -1,4 +1,4 @@
-name: Build and Release
+  name: Build and Release
 
 on:
   push:
@@ -18,17 +18,11 @@ jobs:
       - name: Configure CMake
         run: |
           VERSION=${GITHUB_REF_NAME#v}
-          cmake -B build -D SOLVER_VERSION="$VERSION"
+          cmake -B build -D SOLVER_VERSION="$VERSION" -DCPACK_GENERATOR="DEB;RPM;TGZ;ZIP"
       - name: Build
         run: cmake --build build --config Release
-      - name: Package with CPack (DEB, RPM, TGZ, ZIP)
-        run: |
-          cd build
-          cpack -G DEB
-          cpack -G RPM
-          cpack -G TGZ
-          cpack -G ZIP
-          cd ..
+      - name: Package
+        run: cmake --build build --target package
       - name: List Linux packages
         run: ls -la build/*.{deb,rpm,tar.gz,zip} 2>/dev/null || true
       - name: Upload Linux artifacts
@@ -47,19 +41,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Configure CMake
+        shell: pwsh
         run: |
           $VERSION = "$env:GITHUB_REF_NAME".TrimStart('v')
-          cmake -B build -D SOLVER_VERSION="$VERSION"
+          cmake -B build -D SOLVER_VERSION="$VERSION" -DCPACK_GENERATOR="ZIP"
       - name: Build
         run: cmake --build build --config Release
-      - name: Create ZIP archive manually
-        run: |
-          Compress-Archive -Path build/Release/* -DestinationPath solverapp-${{ github.ref_name }}-win64.zip
-      - name: Upload Windows ZIP
+      - name: Package
+        run: cmake --build build --target package
+      - name: List Windows packages
+        run: Get-ChildItem -Path build\*.zip
+      - name: Upload Windows artifacts
         uses: actions/upload-artifact@v4
         with:
           name: windows-packages
-          path: solverapp-${{ github.ref_name }}-win64.zip
+          path: build/*.zip
           if-no-files-found: error
 
   build-macos:
@@ -69,19 +65,18 @@ jobs:
       - name: Configure CMake
         run: |
           VERSION=${GITHUB_REF_NAME#v}
-          cmake -B build -D SOLVER_VERSION="$VERSION"
+          cmake -B build -D SOLVER_VERSION="$VERSION" -DCPACK_GENERATOR="ZIP"
       - name: Build
         run: cmake --build build --config Release
-      - name: Create ZIP archive manually
-        run: |
-          cd build
-          zip -r ../solverapp-${{ github.ref_name }}-macos.zip Release/solver
-          cd ..
-      - name: Upload macOS ZIP
+      - name: Package
+        run: cmake --build build --target package
+      - name: List macOS packages
+        run: ls -la build/*.zip 2>/dev/null || true
+      - name: Upload macOS artifacts
         uses: actions/upload-artifact@v4
         with:
           name: macos-packages
-          path: solverapp-${{ github.ref_name }}-macos.zip
+          path: build/*.zip
           if-no-files-found: error
 
   create-release:
@@ -106,6 +101,6 @@ jobs:
           name: Release ${{ github.ref_name }}
           body: |
             Automated release for version ${{ github.ref_name }}.
-            Contains packages for Linux (DEB, RPM, TGZ, ZIP), Windows (ZIP), macOS (ZIP).
+            Contains packages for Linux (DEB, RPM, ZIP), Windows (ZIP), macOS (ZIP), and source archives (TGZ, ZIP).
           draft: false
           prerelease: false
