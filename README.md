@@ -25,11 +25,11 @@
 5. Исправлены ошибки:
    - В `CMakeLists.txt` добавлена явная зависимость `formatter_ex_lib` от `formatter_lib` (чтобы избежать проблем с линковкой).
    - Для Debian-пакета указан обязательный параметр `CPACK_DEBIAN_PACKAGE_MAINTAINER`.
-6. Созданы теги `v1.0.0`, `v1.0.1`, `v1.0.2`, `v1.0.3`, `v1.0.4`, `v1.0.5`. Последний тег (`v1.1.2`) успешно запустил workflow и создал релиз.
+6. Созданы теги `v1.0.0`, `v1.0.1`, `v1.0.2`, `v1.0.3`, `v1.0.4`, `v1.0.5`. Последний тег (`v1.1.3`) успешно запустил workflow и создал релиз.
 
 ## Результаты
-- Релиз `v1.1.2` доступен по адресу:  
-  [https://github.com/Gor-debug/lab06/releases/tag/v1.1.2](https://github.com/Gor-debug/lab06/releases/tag/v1.1.2)
+- Релиз `v1.1.3` доступен по адресу:  
+  [https://github.com/Gor-debug/lab06/releases/tag/v1.1.3](https://github.com/Gor-debug/lab06/releases/tag/v1.1.3)
 - К релизу приложены четыре пакета: `.deb`, `.rpm`, `.tar.gz`, `.zip`. Также msi и dmg
 
 ## Вывод
