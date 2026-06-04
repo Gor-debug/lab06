@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
- 
+  # ---------- LINUX ----------
   build-linux:
     runs-on: ubuntu-latest
     steps:
@@ -37,7 +37,7 @@ jobs:
             build/*.zip
           if-no-files-found: error
 
-  
+  # ---------- WINDOWS (MSI) ----------
   build-windows:
     runs-on: windows-latest
     steps:
@@ -86,7 +86,7 @@ jobs:
           path: build/*.dmg
           if-no-files-found: error
 
-  
+  # ---------- RELEASE ----------
   create-release:
     needs: [build-linux, build-windows, build-macos]
     runs-on: ubuntu-latest
