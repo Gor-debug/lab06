@@ -10,11 +10,7 @@ set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/DESCRIPTION")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
 
-# ========== ИЗМЕНЕНИЕ ЗДЕСЬ ==========
-# Раньше было: set(CPACK_GENERATOR "DEB;RPM;TGZ;ZIP")
-# Теперь добавляем WIX (для MSI) и DragNDrop (для DMG)
 set(CPACK_GENERATOR "DEB;RPM;TGZ;ZIP;WIX;DragNDrop")
-# ====================================
 
 set(CPACK_SOURCE_GENERATOR "TGZ;ZIP")
 
